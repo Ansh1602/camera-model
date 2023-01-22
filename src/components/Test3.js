@@ -65,7 +65,7 @@ const Test3 = () => {
                     ).draw(canvasRef.current)
                 })
 
-    }, 100);
+    }, 2000);
   }
 
 
