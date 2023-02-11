@@ -47,23 +47,31 @@ const Test3 = () => {
 
       const detections = await faceapi.detectAllFaces(videoRef.current, new faceapi.TinyFaceDetectorOptions()).withFaceLandmarks().withFaceExpressions().withAgeAndGender();
 
-      // console.log(detections)
+      // console.log(detections[0])
+      // console.log(detections[0].age)
+
+      detections.forEach(result => {
+        const { age, gender, genderProbability } = result
+        console.log(result.expressions)
+        console.log(`${faceapi.utils.round(age, 0)} years`)
+        console.log(`${gender} (${faceapi.utils.round(genderProbability)})`)
+      })
       const resizedDetections = faceapi.resizeResults(detections, displaySize)
 
       canvasRef.current.getContext('2d').clearRect(0, 0, videoWidth, videoHeight)
 
       faceapi.draw.drawFaceExpressions(canvasRef.current, resizedDetections);
       faceapi.draw.drawDetections(canvasRef.current, resizedDetections.map(res => res.detection))
-                resizedDetections.forEach(result => {
-                    const { age, gender, genderProbability } = result
-                    new faceapi.draw.DrawTextField(
-                        [
-                            `${faceapi.utils.round(age, 0)} years`,
-                            `${gender} (${faceapi.utils.round(genderProbability)})`
-                        ],
-                        result.detection.box
-                    ).draw(canvasRef.current)
-                })
+      resizedDetections.forEach(result => {
+        const { age, gender, genderProbability } = result
+        new faceapi.draw.DrawTextField(
+          [
+            `${faceapi.utils.round(age, 0)} years`,
+            `${gender} (${faceapi.utils.round(genderProbability)})`
+          ],
+          result.detection.box
+        ).draw(canvasRef.current)
+      })
 
     }, 2000);
   }
