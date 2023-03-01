@@ -141,6 +141,8 @@ function VirtualBg() {
         // Only overwrite missing pixels.
         // ctx.globalCompositeOperation = "destination-atop";
         ctx.globalCompositeOperation = "source-in";
+        ctx.imageSmoothingEnabled = true;
+        ctx.imageSmoothingQuality = "high";
         ctx.drawImage(
             results.image,
             0,
