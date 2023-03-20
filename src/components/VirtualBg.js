@@ -4,7 +4,7 @@ import { Camera } from "@mediapipe/camera_utils/camera_utils.js";
 import { SelfieSegmentation } from "@mediapipe/selfie_segmentation";
 import * as faceapi from 'face-api.js';
 import bg1 from '../images/bg1.jpg'
-import bg2 from '../images/bg2.jpg'
+// import bg2 from '../images/bg2.jpg'
 
 function VirtualBg() {
     const inputVideoRef = useRef();
